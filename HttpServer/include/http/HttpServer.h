@@ -14,10 +14,6 @@
 #include <muduo/net/EventLoop.h>
 #include <muduo/net/TcpServer.h>
 
-#include "HttpContext.h"
-#include "HttpRequest.h"
-#include "HttpResponse.h"
-
 #include "../middleware/MiddlewareChain.h"
 #include "../middleware/cors/CorsMiddleware.h"
 #include "../router/Router.h"
@@ -32,10 +28,12 @@ class HttpRequest;
 class HttpResponse;
 
 namespace http {
+
 class HttpServer : muduo::noncopyable {
   public:
     using HttpCallback =
         std::function<void(const http::HttpRequest &, http::HttpResponse *)>;
+
     // 构造函数
     HttpServer(int port, const std::string &name, bool useSSL = false,
                muduo::net::TcpServer::Option option =
@@ -118,6 +116,7 @@ class HttpServer : muduo::noncopyable {
     middleware::MiddlewareChain middlewareChain_;             // 中间件链
     std::unique_ptr<ssl::SslContext> sslCtx_;                 // SSL 上下文
     bool useSSL_; // 是否使用 SSL
+    // TcpConnectionPtr -> SslConnectionPtr
     std::map<muduo::net::TcpConnectionPtr, std::unique_ptr<ssl::SslConnection>>
         sslConns_;
 };

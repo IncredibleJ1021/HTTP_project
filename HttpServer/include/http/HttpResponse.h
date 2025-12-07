@@ -16,7 +16,7 @@ class HttpResponse {
         k403Forbidden = 403,
         k404NotFound = 404,
         k409Conflict = 409,
-        k500InteralServerError = 500,
+        k500InternalServerError = 500,
     };
 
     HttpResponse(bool close = true)
