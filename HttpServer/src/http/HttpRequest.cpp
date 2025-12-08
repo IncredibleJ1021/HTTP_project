@@ -23,6 +23,15 @@ bool HttpRequest::setMethod(const char *start, const char *end) {
     return method_ != kInvalid;
 }
 
+void HttpRequest::setPath(const char *start, const char *end) {
+    path_.assign(start, end);
+}
+
+void HttpRequest::setPathParameters(const std::string &key,
+                                    const std::string &value) {
+    pathParameters_[key] = value;
+}
+
 // 从问号后面分隔参数
 void HttpRequest::setQueryParameters(const char *start, const char *end) {
     std::string argumentStr(start, end);

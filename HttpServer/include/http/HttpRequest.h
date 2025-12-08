@@ -23,7 +23,7 @@ class HttpRequest {
     void setPath(const char *start, const char *end);
     std::string path() const { return path_; }
 
-    void setPathParameters(const std::string key, const std::string &value);
+    void setPathParameters(const std::string &key, const std::string &value);
     std::string getPathParameters(const std::string &key) const;
 
     void setQueryParameters(const char *start, const char *end);
